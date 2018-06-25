@@ -15,14 +15,14 @@ class Counter
 
     public function get()
     {
-        return $this->i;
+        return $this->i . '|' . \Swoole\Coroutine::getuid();
     }
 }
 
 $http = new swoole_http_server('0.0.0.0', '8080');
 $http->set([
     'dispatch_mode' => 3,
-    'worker_num' => 1,
+    'worker_num'    => 1,
 ]);
 $http->on('workerStart', function () {
 });
